@@ -10,7 +10,7 @@ defined('ABSPATH') || exit;
 
 // Include shortcode functionality
 require_once plugin_dir_path(__FILE__) . 'includes/shortcode.php';
-require_once plugin_dir_path(__FILE__) . 'bkash/payment.php';
+//require_once plugin_dir_path(__FILE__) . 'bkash/token.php';
 
 add_action('wp_enqueue_scripts', 'custom_registration_front_styles');
 function custom_registration_front_styles($hook) {       
@@ -58,8 +58,7 @@ add_action('admin_post_custom_registration', 'handle_custom_registration');
 function handle_custom_registration() {
     if (!isset($_POST['custom_registration_nonce']) || !wp_verify_nonce($_POST['custom_registration_nonce'], 'custom_registration')) {
         wp_die('Security check failed!');
-    }
-    
+    }    
 
     // Collect and sanitize input
     $category = sanitize_text_field($_POST['category']);
@@ -77,7 +76,6 @@ function handle_custom_registration() {
     $status = sanitize_text_field($_POST['status']);
     $username = sanitize_user($_POST['username']);
     $password = $_POST['password'];
-
 
     // Create the user
     $user_id = wp_create_user($username, $password, $email);
@@ -97,7 +95,7 @@ function handle_custom_registration() {
     update_user_meta($user_id, 'class', $class);
     update_user_meta($user_id, 'extra', implode(',', $extra));
     update_user_meta($user_id, 'amount', $amount);
-    update_user_meta($user_id, 'status', $status);
+    update_user_meta($user_id, 'status', $status);    
 
     // var_dump(implode(',', $extra));
     // exit;
@@ -290,11 +288,11 @@ function handle_custom_registration() {
     ];
 
     // Send the email
-    wp_mail($to, $subject, $message, $headers);
+    //wp_mail($to, $subject, $message, $headers);
 
     // Redirect to a thank-you page
 
-    wp_redirect(home_url('/thank-you/'));
+    wp_redirect(home_url('wp-content/plugins/bkash-registration/bkash/createpayment.php'));
     exit;
 }
 

@@ -68,8 +68,8 @@ function custom_registration_form_shortcode() {
     <label>Password:<span>*</span></label>
     <input type="password" name="password" required><br>
 
-    <?php echo do_shortcode( '[payment_form]' );?>
-    <p id='submit'></p>
+    <?php //echo do_shortcode( '[payment_form]' );?>
+    <p id='submit'><button type='submit'>Register</button></p>
 
 </form>
 

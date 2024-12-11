@@ -1,0 +1,121 @@
+
+@import url('Siyamrupali.ttf');
+
+@font-face {
+  font-family: bangla_f;
+  src: url(Siyamrupali.ttf);
+  font-weight: 100;
+}
+
+*{
+  font-family: "bangla_f",Roboto","Arial";
+      font-weight: 100;
+}
+
+
+.ast-plain-container, .ast-page-builder-template {
+    /* background-color: #685353; */
+    background-color: #ffffff;
+    background-image: -webkit-linear-gradient(42deg, #ffffff 0%, #c9e1f9 43%, #E0C3FC 72%, #ffffff 100%);
+    background-image: -moz-linear-gradient(42deg, #ffffff 0%, #c9e1f9 43%, #E0C3FC 72%, #ffffff 100%);
+    background-image: -o-linear-gradient(42deg, #ffffff 0%, #c9e1f9 43%, #E0C3FC 72%, #ffffff 100%);
+    background-image: linear-gradient(42deg, #ffffff 0%, #c9e1f9 43%, #E0C3FC 72%, #ffffff 100%);
+}
+
+.form-group{
+	font-family: "bangla_f", serif;
+      font-weight: 100;
+}
+
+.form-group label {
+    display: block;
+    font-size: 16px;
+    font-weight: 400;
+    margin-bottom: 5px;
+    color: #555;
+}
+
+    .form-group label span{
+      color: #FF5733 ;
+      font-size: 16px;
+    }
+
+.check_check {
+    width: 59px;
+    display: flex;
+    float: left;
+    margin: -7px  10px 23px 0px;
+}
+      .p_text{
+    padding: 0 !important;
+    margin: 0 !important;
+    line-height: 1.5 !important;
+    }
+ 
+   .p_b{ margin-bottom: 20px !important;}
+
+
+    .form-group input,
+    .form-group select {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+      margin: 10px 0 21px 0;
+      height: 50px;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus {
+      outline: none;
+      border-color: #007bff;
+      box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+    }
+
+    #bKash_button {
+     width: 246px;
+     padding: 20px 58px !important;
+     font-size: 16px !important;
+     transition: background-color 0.3s !important;
+    }
+
+    .submit-btn:hover {
+      background-color: #0056b3;
+    }
+
+header.entry-header .entry-title {
+    color: #03A9F4!important;
+}
+
+  .info_con {
+    width: 100%;
+    height: 110px;
+}
+
+#primary {
+    background: #f3f3f3;
+    padding: 5% !important;
+    box-shadow: -3px 2px 20px 2px rgba(0,0,0,0.49);
+    -webkit-box-shadow: -3px 2px 20px 2px rgba(0,0,0,0.49);
+    -moz-box-shadow: -3px 2px 20px 2px rgba(0,0,0,0.49);
+}
+
+.elementor-widget-video-playlist .e-tabs-items-wrapper .shadow-bottom {
+    background: linear-gradient(180deg, transparent, #e7d2fc)!important;
+}
+.elementor-widget-video-playlist .e-tabs-items-wrapper .top-shadow{
+  background: linear-gradient(180deg, transparent, #e7d2fc)!important;
+}
+
+.elementor-widget-video-playlist .top-shadow .shadow-top {
+background: linear-gradient(0deg, transparent, #e7d2fc)!important;
+}
+
+#submit button {
+ width: 246px;
+ padding: 20px 58px !important;
+ font-size: 16px !important;
+ transition: background-color 0.3s !important;
+ color: #ffffff;
+}

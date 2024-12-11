@@ -11,8 +11,8 @@ function payment_form_shortcode() {
     <meta name="viewport" content="width=device-width" ,="" initial-scale="1.0/">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrom=1">
 	<!-- <script src="http://localhost/wpnew/wp-content/plugins/bkash-registration/js/jquery-1.8.3.min.js?ver=1.0.0"></script> -->
-    <!-- <script id = "myScript" src="https://scripts.sandbox.bka.sh/versions/1.2.0-beta/checkout/bKash-checkout-sandbox.js"></script> -->
-    <script id = "myScript" src="https://scripts.pay.bka.sh/versions/1.2.0-beta/checkout/bKash-checkout.js"></script>
+    <script id = "myScript" src="https://scripts.sandbox.bka.sh/versions/1.2.0-beta/checkout/bKash-checkout-sandbox.js"></script>
+    <!-- <script id = "myScript" src="https://scripts.pay.bka.sh/versions/1.2.0-beta/checkout/bKash-checkout.js"></script> -->
     <style>
         .pamentmessage{
             background-color: #198754; color: #ffffff; padding: 5px;  text-align: center;

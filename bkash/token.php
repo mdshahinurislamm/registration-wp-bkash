@@ -26,7 +26,7 @@ function bkash_Get_Token(){
 	);	
     
     $url=curl_init($array["tokenURL"]);
-	$proxy = $array["proxy"];
+
 	$posttoken=json_encode($post_token);
 	$header=array(
 		'Content-Type:application/json',
@@ -39,7 +39,8 @@ function bkash_Get_Token(){
     curl_setopt($url,CURLOPT_RETURNTRANSFER, true);
 	curl_setopt($url,CURLOPT_POSTFIELDS, $posttoken);
 	curl_setopt($url,CURLOPT_FOLLOWLOCATION, 1);
-	//curl_setopt($url, CURLOPT_PROXY, $proxy);
+	curl_setopt($url, CURLOPT_IPRESOLVE, CURL_IPRESOLVE_V4);
+	
 	$resultdata=curl_exec($url);
 	curl_close($url);
 	return json_decode($resultdata, true);    

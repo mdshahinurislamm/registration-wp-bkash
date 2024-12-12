@@ -3,7 +3,7 @@ session_start();
 ?>
 <script src="http://localhost/wpnew/wp-content/plugins/bkash-registration/js/jquery-1.8.3.min.js?ver=1.0.0"></script>
 <script id = "myScript" src="https://scripts.pay.bka.sh/versions/1.2.0-beta/checkout/bKash-checkout.js"></script>
-<script type="text/javascript">    
+<!-- <script type="text/javascript">    
     var accessToken='';
     $(document).ready(function(){
         $.ajax({
@@ -17,25 +17,47 @@ session_start();
                 accessToken=JSON.stringify(data);
             },
 			error: function(){
-				console.log('error');                        
+				console.log('error');    
+                wondows.reload();                    
             }
         });        
     });	
-	function callReconfigure(val){
-        bKash.reconfigure(val);
-    }
-</script>
+	// function callReconfigure(val){
+    //     bKash.reconfigure(val);
+    // }
+</script> -->
 <?php
-
+// token.php or wherever you're fetching the token
+$actual_link = (empty($_SERVER['HTTPS']) ? 'http' : 'https') . "://$_SERVER[HTTP_HOST]";
+// Use cURL to fetch the token
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, $actual_link."/wpnew/wp-content/plugins/bkash-registration/bkash/token.php"); // URL to the token.php script
+curl_setopt($ch, CURLOPT_POST, true);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_HTTPHEADER, [
+    'Content-Type: application/json',
+]);
+$response = curl_exec($ch);
+if ($response === false) {
+    die('Error fetching token: ' . curl_error($ch));
+}
+curl_close($ch);
+// Store the token
+$accessToken = $data['accessToken'] ?? null;
+if ($accessToken) {
+    echo "Access Token: " . htmlspecialchars($accessToken);
+} else {
+    echo "Failed to fetch access token.";
+}
+//create paymen-----------------------------------------------
 $strJsonFileContents = file_get_contents("config.json");
 $array = json_decode($strJsonFileContents, true);
-$amount = '300';
-$invoice = "12345678"; // must be unique
-$intent = "sale";
-$proxy = $array["proxy"];
-$callback = $actual_link = (empty($_SERVER['HTTPS']) ? 'http' : 'https') . "://$_SERVER[HTTP_HOST]";
+$amount = '3';
+$invoice = 'inv_'.rand(); // must be unique
+$intent = "sale"; 
+$callback = $actual_link;
 
-$createpaybody=array('amount'=>$amount, 'currency'=>'BDT', 'merchantInvoiceNumber'=>$invoice,'intent'=>$intent, "mode"=> "0011", "payerReference"=> "01886286321", "callbackURL"=> $callback.'/wpnew/thank-you');   
+$createpaybody=array('amount'=>$amount, 'currency'=>'BDT', 'merchantInvoiceNumber'=>$invoice,'intent'=>$intent, "mode"=> "0011", "payerReference"=> "1", "callbackURL"=> $callback.'/wpnew/wp-content/plugins/bkash-registration/bkash/executepayment.php');   
     
     $url = curl_init($array["createURL"]);
 
@@ -60,8 +82,7 @@ $createpaybody=array('amount'=>$amount, 'currency'=>'BDT', 'merchantInvoiceNumbe
     curl_close($url);
     echo $resultdata;
     $obj = json_decode($resultdata);
-    //var_dump($obj->{'transactionStatus'});
-
+   // var_dump($obj);
     header("Location: " . $obj->{'bkashURL'});
 
 ?>

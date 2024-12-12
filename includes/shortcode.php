@@ -186,9 +186,7 @@ function custom_registration_form_shortcode2() {
 
     <label>Password: <span>*</span></label>
     <input type="password" name="password" required><br>
-
-    <?php echo do_shortcode( '[payment_form]' );?>
-    <p id='submit'></p>
+    <p id='submit'><button type='submit'>Register</button></p>
 
 </form>
 
@@ -334,8 +332,7 @@ function custom_registration_form_shortcode3() {
     <label>Password:<span>*</span></label>
     <input type="password" name="password" required><br>
 
-    <?php echo do_shortcode( '[payment_form]' );?>
-    <p id='submit'></p>
+    <p id='submit'><button type='submit'>Register</button></p>
 
 </form>
 
@@ -361,11 +358,7 @@ document.getElementById('myForm12').addEventListener('submit', function(event) {
     }
 });
 </script>
-
-
-
 <?php
     return ob_get_clean();
 }
-
 add_shortcode('cat_3_registration_form', 'custom_registration_form_shortcode3');

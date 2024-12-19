@@ -31,6 +31,6 @@ $_SESSION['executeData'] = $obj;
 
 $callback = $actual_link = (empty($_SERVER['HTTPS']) ? 'http' : 'https') . "://$_SERVER[HTTP_HOST]";
 
-header("Location: " .$callback.'/wpnew/thank-you');
+header("Location: " .$callback.'/thank-you');
     
 ?>

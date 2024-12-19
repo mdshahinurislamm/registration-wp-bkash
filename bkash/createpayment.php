@@ -1,7 +1,7 @@
 <?php
 session_start();
 ?>
-<script src="http://localhost/wpnew/wp-content/plugins/bkash-registration/js/jquery-1.8.3.min.js?ver=1.0.0"></script>
+<script src="https://faatihaaayat.com/wp-content/plugins/bkash-registration/js/jquery-1.8.3.min.js?ver=1.0.0"></script>
 <script id = "myScript" src="https://scripts.pay.bka.sh/versions/1.2.0-beta/checkout/bKash-checkout.js"></script>
 <!-- <script type="text/javascript">    
     var accessToken='';
@@ -31,7 +31,7 @@ session_start();
 $actual_link = (empty($_SERVER['HTTPS']) ? 'http' : 'https') . "://$_SERVER[HTTP_HOST]";
 // Use cURL to fetch the token
 $ch = curl_init();
-curl_setopt($ch, CURLOPT_URL, $actual_link."/wpnew/wp-content/plugins/bkash-registration/bkash/token.php"); // URL to the token.php script
+curl_setopt($ch, CURLOPT_URL, $actual_link."/wp-content/plugins/bkash-registration/bkash/token.php"); // URL to the token.php script
 curl_setopt($ch, CURLOPT_POST, true);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch, CURLOPT_HTTPHEADER, [
@@ -57,7 +57,7 @@ $invoice = 'inv_'.rand(); // must be unique
 $intent = "sale"; 
 $callback = $actual_link;
 
-$createpaybody=array('amount'=>$amount, 'currency'=>'BDT', 'merchantInvoiceNumber'=>$invoice,'intent'=>$intent, "mode"=> "0011", "payerReference"=> "1", "callbackURL"=> $callback.'/wpnew/wp-content/plugins/bkash-registration/bkash/executepayment.php');   
+$createpaybody=array('amount'=>$amount, 'currency'=>'BDT', 'merchantInvoiceNumber'=>$invoice,'intent'=>$intent, "mode"=> "0011", "payerReference"=> "1", "callbackURL"=> $callback.'/wp-content/plugins/bkash-registration/bkash/executepayment.php');   
     
     $url = curl_init($array["createURL"]);
 

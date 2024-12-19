@@ -4,11 +4,13 @@
  * Description: A custom page template added by the plugin.
  */
 get_header();
+if (!defined('ABSPATH')) {
+    require_once($_SERVER['DOCUMENT_ROOT'] . '/wp-load.php'); // Adjust the path if necessary
+}
+
 ?>
 <div class="custom-template-content">
-    <p><?php
-    the_content() ?? "Thank you! We appreciate your support and look forward to serving you. If you have any questions, please dont hesitate to contact us!";
-    ?></p><?php
+<?php
 
 $transactionStatus =  $_SESSION['executeData']->{"transactionStatus"} ?? '';
 
@@ -19,8 +21,8 @@ update_user_meta($_SESSION['user_id'], 'trxID', $_SESSION['executeData']->{"trxI
 $to = $_SESSION['user_email']; // Recipient's email
 $subject = 'Registration Successful';
 
-$image_url = plugin_dir_url(__FILE__) . 'images/signature.jpg'; // Adjust the path to your image
-$child = plugin_dir_url(__FILE__) . 'images/CHILd.png'; // Adjust the path to your image
+$image_url = plugin_dir_url(__FILE__) . '../images/signature.jpg'; // Adjust the path to your image
+$child = plugin_dir_url(__FILE__) . '../images/CHILd.png'; // Adjust the path to your image
 
 
 // Your HTML template
@@ -207,12 +209,25 @@ $headers = [
 // Send the email
 if($transactionStatus == 'Completed'){
     wp_mail($to, $subject, $message, $headers);
+	
+    the_content() ?? "Thank you! We appreciate your support and look forward to serving you. If you have any questions, please dont hesitate to contact us!";    
     echo "<p>Payment Status: ".$transactionStatus."</p>";
-}else{
-    echo "<p>Payment Status: ".$transactionStatus." or Incomplete</p>";
+}else{	
+	
+	global $wpdb;
+	$user_id = $_SESSION['user_id']; // Get user ID from session or other source
+	if ($user_id) {
+		// Delete user meta
+		$wpdb->query("DELETE FROM $wpdb->prefix . 'usermeta' WHERE user_id = $user_id");
+		// Delete user's posts (optional)
+		$wpdb->query("DELETE FROM $wpdb->posts WHERE post_author = $user_id");
+		// Delete the user from wp_users table
+		$wpdb->query("DELETE FROM $wpdb->users WHERE ID = $user_id");
+		//echo "User with ID $user_id has been deleted along with their posts and meta.";
+	} 
+	
+    echo "<p>Payment Status: ".$transactionStatus." Incomplete</p>";
 }
-
-
 
 
 $_SESSION['user_email'] = '';
